@@ -1,0 +1,30 @@
+{
+  "name": "snake-game",
+  "version": "1.0.0",
+  "description": "一个精美流畅的 H5 贪吃蛇小游戏",
+  "main": "index.html",
+  "scripts": {
+    "start": "http-server -p 8000 -o",
+    "dev": "http-server -p 8000"
+  },
+  "keywords": [
+    "snake",
+    "game",
+    "html5",
+    "canvas",
+    "javascript",
+    "es6"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/WJiaoJiao/ai-h5-test.git"
+  },
+  "bugs": {
+    "url": "https://github.com/WJiaoJiao/ai-h5-test/issues"
+  }
+}

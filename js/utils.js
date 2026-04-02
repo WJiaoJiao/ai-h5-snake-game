@@ -23,7 +23,7 @@ const DIRECTIONS = {
     RIGHT: { x: 1, y: 0 }
 };
 
-// 方向的反方向映射（用于防止180度��向）
+// 方向的反方向映射（用于防止180度转向）
 const OPPOSITE_DIRECTIONS = {
     UP: 'DOWN',
     DOWN: 'UP',
@@ -56,12 +56,17 @@ const Storage = {
      * @returns {boolean} 是否是新纪录
      */
     saveHighScore(score) {
-        const currentHighScore = this.getHighScore();
-        if (score > currentHighScore) {
-            localStorage.setItem('snakeHighScore', score.toString());
-            return true;
+        try {
+            const currentHighScore = this.getHighScore();
+            if (score > currentHighScore) {
+                localStorage.setItem('snakeHighScore', score.toString());
+                return true;
+            }
+            return false;
+        } catch (error) {
+            console.warn('无法保存最高分，localStorage 可能被禁用:', error);
+            return false;
         }
-        return false;
     },
 
     /**
@@ -69,15 +74,24 @@ const Storage = {
      * @returns {number} 最高分
      */
     getHighScore() {
-        const highScore = localStorage.getItem('snakeHighScore');
-        return highScore ? parseInt(highScore, 10) : 0;
+        try {
+            const highScore = localStorage.getItem('snakeHighScore');
+            return highScore ? parseInt(highScore, 10) : 0;
+        } catch (error) {
+            console.warn('无法读取最高分，localStorage 可能被禁用:', error);
+            return 0;
+        }
     },
 
     /**
      * 清除最高分（调试用）
      */
     clearHighScore() {
-        localStorage.removeItem('snakeHighScore');
+        try {
+            localStorage.removeItem('snakeHighScore');
+        } catch (error) {
+            console.warn('无法清除最高分，localStorage 可能被禁用:', error);
+        }
     }
 };
 
