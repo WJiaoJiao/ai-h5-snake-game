@@ -1,0 +1,123 @@
+/* ========================================
+   动画效果定义
+   ======================================== */
+
+/* 淡入动画 */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -45%);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+}
+
+/* 淡出动画 */
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+    to {
+        opacity: 0;
+        transform: translate(-50%, -45%);
+    }
+}
+
+/* 缩放脉动动画 */
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+/* 闪烁动画（用于新纪录提示） */
+@keyframes blink {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+}
+
+/* 从下方滑入 */
+@keyframes slideInFromBottom {
+    from {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* 旋转动画 */
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* ========================================
+   应用动画到元素
+   ======================================== */
+
+/* 屏幕显示时淡入 */
+.screen:not(.hidden) {
+    animation: fadeIn 0.3s ease-out;
+}
+
+/* 新纪录提示闪烁 */
+.new-record:not(.hidden) {
+    animation: blink 1s ease-in-out infinite;
+}
+
+/* 按钮脉动效果（可选，初始不激活） */
+.btn-pulse {
+    animation: pulse 2s ease-in-out infinite;
+}
+
+/* 分数面板滑入 */
+.score-panel {
+    animation: slideInFromBottom 0.5s ease-out;
+}
+
+/* 游戏标题脉动 */
+.game-title {
+    animation: pulse 3s ease-in-out infinite;
+}
+
+/* ========================================
+   过渡效果
+   ======================================== */
+
+/* 通用过渡 */
+.screen,
+.btn-primary,
+.btn-secondary,
+.score-panel {
+    transition: all 0.3s ease;
+}
+
+/* 按钮悬停过渡 */
+.btn-primary:hover,
+.btn-secondary:hover {
+    transition: all 0.2s ease;
+}
+
+/* 隐藏元素的过渡 */
+.hidden {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}

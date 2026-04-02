@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <title>贪吃蛇游戏</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animations.css">
+</head>
+<body>
+    <div class="game-container">
+        <!-- Canvas 游戏画布 -->
+        <canvas id="gameCanvas"></canvas>
+
+        <!-- UI 层 -->
+        <div class="ui-overlay">
+            <!-- 分数面板 -->
+            <div class="score-panel">
+                <div class="current-score">分数: <span id="score">0</span></div>
+                <div class="high-score">最高分: <span id="highScore">0</span></div>
+            </div>
+
+            <!-- 主菜单 -->
+            <div id="menuScreen" class="screen">
+                <h1 class="game-title">贪吃蛇</h1>
+                <button class="btn-primary" id="startBtn">开始游戏</button>
+                <div class="instructions">
+                    <p>🎮 使用方向键或滑动控制</p>
+                    <p>⏸️ 按空格键暂停</p>
+                </div>
+            </div>
+
+            <!-- 暂停界面 -->
+            <div id="pauseScreen" class="screen hidden">
+                <h2>游戏暂停</h2>
+                <button class="btn-secondary" id="resumeBtn">继续游戏</button>
+                <button class="btn-secondary" id="quitBtn">返回菜单</button>
+            </div>
+
+            <!-- 游戏结束界面 -->
+            <div id="gameOverScreen" class="screen hidden">
+                <h2>游戏结束</h2>
+                <div class="final-score">得分: <span id="finalScore">0</span></div>
+                <div class="new-record hidden" id="newRecord">🏆 新纪录！</div>
+                <button class="btn-primary" id="restartBtn">再来一局</button>
+                <button class="btn-secondary" id="backToMenuBtn">返回菜单</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 按依赖顺序加载脚本 -->
+    <script src="js/utils.js"></script>
+    <script src="js/Snake.js"></script>
+    <script src="js/Food.js"></script>
+    <script src="js/Renderer.js"></script>
+    <script src="js/InputHandler.js"></script>
+    <script src="js/UIManager.js"></script>
+    <script src="js/Game.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

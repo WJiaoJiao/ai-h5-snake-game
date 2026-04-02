@@ -1,0 +1,325 @@
+/* ========================================
+   CSS 变量 - 现代化暗色主题配色
+   ======================================== */
+:root {
+    --primary-bg: #1a1a2e;
+    --secondary-bg: #16213e;
+    --accent-color: #0f3460;
+    --highlight-color: #00d9ff;
+    --text-color: #eaeaea;
+    --success-color: #4ecca3;
+    --danger-color: #ff6b6b;
+    --shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    --shadow-hover: 0 12px 48px rgba(0, 0, 0, 0.4);
+}
+
+/* ========================================
+   全局样式重置
+   ======================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: var(--text-color);
+    overflow: hidden;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ========================================
+   游戏容器布局
+   ======================================== */
+.game-container {
+    position: relative;
+    background: var(--primary-bg);
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+}
+
+#gameCanvas {
+    display: block;
+    background: var(--secondary-bg);
+}
+
+/* ========================================
+   UI 覆盖层
+   ======================================== */
+.ui-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.ui-overlay > * {
+    pointer-events: auto;
+}
+
+/* ========================================
+   分数面板
+   ======================================== */
+.score-panel {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 30px;
+    background: rgba(22, 33, 62, 0.9);
+    padding: 15px 30px;
+    border-radius: 15px;
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(10px);
+    z-index: 10;
+}
+
+.current-score,
+.high-score {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+.current-score span {
+    color: var(--success-color);
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.high-score span {
+    color: var(--highlight-color);
+    font-size: 24px;
+    font-weight: 700;
+}
+
+/* ========================================
+   界面屏幕（菜单、暂停、游戏结束）
+   ======================================== */
+.screen {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(22, 33, 62, 0.95);
+    padding: 50px 60px;
+    border-radius: 25px;
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(20px);
+    text-align: center;
+    min-width: 350px;
+    z-index: 20;
+}
+
+.screen.hidden {
+    display: none;
+}
+
+.game-title {
+    font-size: 56px;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--success-color), var(--highlight-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 30px;
+    text-shadow: 0 0 30px rgba(78, 204, 163, 0.3);
+}
+
+.screen h2 {
+    font-size: 42px;
+    margin-bottom: 25px;
+    color: var(--text-color);
+}
+
+.final-score {
+    font-size: 28px;
+    margin: 20px 0;
+    color: var(--text-color);
+}
+
+.final-score span {
+    color: var(--success-color);
+    font-size: 36px;
+    font-weight: 700;
+}
+
+.new-record {
+    font-size: 24px;
+    color: var(--highlight-color);
+    margin: 15px 0;
+    font-weight: 600;
+}
+
+.instructions {
+    margin-top: 30px;
+    font-size: 16px;
+    color: rgba(234, 234, 234, 0.7);
+    line-height: 1.8;
+}
+
+.instructions p {
+    margin: 8px 0;
+}
+
+/* ========================================
+   按钮样式
+   ======================================== */
+.btn-primary,
+.btn-secondary {
+    padding: 15px 40px;
+    margin: 10px;
+    font-size: 18px;
+    font-weight: 600;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow);
+    outline: none;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--success-color), #3bb78f);
+    color: white;
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-hover);
+    background: linear-gradient(135deg, #5fd4ae, var(--success-color));
+}
+
+.btn-primary:active {
+    transform: translateY(-1px);
+}
+
+.btn-secondary {
+    background: linear-gradient(135deg, var(--accent-color), #1e5a8e);
+    color: white;
+}
+
+.btn-secondary:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-hover);
+    background: linear-gradient(135deg, #1e5a8e, var(--accent-color));
+}
+
+.btn-secondary:active {
+    transform: translateY(-1px);
+}
+
+/* ========================================
+   响应式设计
+   ======================================== */
+/* 桌面端 */
+@media (min-width: 768px) {
+    .game-container {
+        width: 640px;
+        height: 640px;
+    }
+
+    #gameCanvas {
+        width: 640px;
+        height: 640px;
+    }
+}
+
+/* 移动端 */
+@media (max-width: 767px) {
+    .game-container {
+        width: 100vw;
+        height: 100vh;
+        border-radius: 0;
+    }
+
+    #gameCanvas {
+        width: 100vw;
+        height: 100vh;
+    }
+
+    .score-panel {
+        top: 10px;
+        gap: 15px;
+        padding: 10px 20px;
+    }
+
+    .current-score,
+    .high-score {
+        font-size: 14px;
+    }
+
+    .current-score span,
+    .high-score span {
+        font-size: 18px;
+    }
+
+    .screen {
+        min-width: 280px;
+        padding: 30px 40px;
+    }
+
+    .game-title {
+        font-size: 42px;
+    }
+
+    .screen h2 {
+        font-size: 32px;
+    }
+
+    .final-score {
+        font-size: 22px;
+    }
+
+    .final-score span {
+        font-size: 28px;
+    }
+
+    .new-record {
+        font-size: 20px;
+    }
+
+    .btn-primary,
+    .btn-secondary {
+        padding: 12px 30px;
+        font-size: 16px;
+    }
+}
+
+/* 横屏适配 */
+@media (max-height: 600px) and (orientation: landscape) {
+    .score-panel {
+        top: 5px;
+        padding: 8px 15px;
+    }
+
+    .screen {
+        padding: 20px 30px;
+    }
+
+    .game-title {
+        font-size: 32px;
+        margin-bottom: 15px;
+    }
+
+    .screen h2 {
+        font-size: 24px;
+        margin-bottom: 15px;
+    }
+
+    .btn-primary,
+    .btn-secondary {
+        padding: 10px 25px;
+        margin: 5px;
+    }
+}
